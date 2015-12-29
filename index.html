@@ -1,0 +1,56 @@
+<html>
+<head>
+	<script src="http://threejs.org/build/three.min.js" type="text/javascript" charset="utf-8"></script>
+	<title>Dice Roller</title>
+</head>
+<body>
+<script>
+
+    var scene, camera, renderer;
+    var geometry, material, mesh, texture;
+
+    init();
+    animate();
+
+    function init() {
+
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 1000;
+        
+		texture = THREE.ImageUtils.loadTexture( 'textures/d6.png');
+        geometry = new THREE.BoxGeometry( 200, 200, 200 );
+        material = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('textures/d6.png')});
+
+        var one = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150, 0), new THREE.Vector2D(.150, .150)];
+        var two = [new THREE.Vector2D(.150, 0), new THREE.Vector2D(.150, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+        var three = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+        var four = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+        var five = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+        var six = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+
+        mesh = new THREE.Mesh( geometry, material );
+        scene.add( mesh );
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        document.body.appendChild( renderer.domElement );
+
+    }
+
+    function animate() {
+
+        requestAnimationFrame( animate );
+
+        mesh.rotation.x += 0.01;
+        mesh.rotation.y += 0.02;
+
+        renderer.render( scene, camera );
+
+    }
+
+</script>
+</body>
+</html>

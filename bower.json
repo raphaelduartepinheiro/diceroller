@@ -1,0 +1,16 @@
+{
+  "name": "diceroller",
+  "version": "0.0.0",
+  "homepage": "https://github.com/raphaelduartepinheiro/diceroller",
+  "authors": [
+    "Raphael D. Pinheiro <raphaklaus@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
