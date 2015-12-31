@@ -5,7 +5,6 @@
 </head>
 <body>
 <script>
-
     var scene, camera, renderer;
     var geometry, material, mesh, texture;
 
@@ -20,32 +19,56 @@
         camera.position.z = 1000;
         
 		texture = THREE.ImageUtils.loadTexture( 'textures/d6.png');
-        geometry = new THREE.BoxGeometry( 200, 200, 200 );
-        material = new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture('textures/d6.png')});
+        geometry = new THREE.BoxGeometry( 150, 150, 150 );
+        material = new THREE.MeshBasicMaterial({map: texture});
+        
+        var one = [new THREE.Vector2(0, .150), new THREE.Vector2(.150, .150), new THREE.Vector2(.150, 0), new THREE.Vector2(0, 0)];
 
-        var one = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150, 0), new THREE.Vector2D(.150, .150)];
-        var two = [new THREE.Vector2D(.150, 0), new THREE.Vector2D(.150, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
-        var three = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
-        var four = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
-        var five = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
-        var six = [new THREE.Vector2D(0, 0), new THREE.Vector2D(0, .150), new THREE.Vector2D(.150,.150), new THREE.Vector2D(.150, 0)];
+        var two = [new THREE.Vector2(.150, .150), new THREE.Vector2(.300, .150), new THREE.Vector2(.300, 0), new THREE.Vector2(.150, 0)];
 
-        mesh = new THREE.Mesh( geometry, material );
-        scene.add( mesh );
+        var three = [new THREE.Vector2(0, .300), new THREE.Vector2(.150, .300), new THREE.Vector2(.150, .150), new THREE.Vector2(0, .150)];
+
+        var four = [new THREE.Vector2(.150, .300), new THREE.Vector2(.300, .300), new THREE.Vector2(.300, .150), new THREE.Vector2(.150, .150)];
+
+        var five = [new THREE.Vector2(0, .450), new THREE.Vector2(.150, .450), new THREE.Vector2(.150, .300), new THREE.Vector2(0, .300)];
+
+        var six = [new THREE.Vector2(.150, .450), new THREE.Vector2(.300, .450), new THREE.Vector2(.300, .300), new THREE.Vector2(.150, .300)];
+
+        geometry.faceVertexUvs[0] = [];
+
+        geometry.faceVertexUvs[0][0] = [ one[0], one[1], one[3] ];
+        geometry.faceVertexUvs[0][1] = [ one[1], one[2], one[3] ];
+          
+        geometry.faceVertexUvs[0][2] = [ two[0], two[1], two[3] ];
+        geometry.faceVertexUvs[0][3] = [ two[1], two[2], two[3] ];
+          
+        geometry.faceVertexUvs[0][4] = [ three[0], three[1], three[3] ];
+        geometry.faceVertexUvs[0][5] = [ three[1], three[2], three[3] ];
+          
+        geometry.faceVertexUvs[0][6] = [ four[0], four[1], four[3] ];
+        geometry.faceVertexUvs[0][7] = [ four[1], four[2], four[3] ];
+          
+        geometry.faceVertexUvs[0][8] = [ five[0], five[1], five[3] ];
+        geometry.faceVertexUvs[0][9] = [ five[1], five[2], five[3] ];
+
+        geometry.faceVertexUvs[0][10] = [ six[0], six[1], six[3] ];
+        geometry.faceVertexUvs[0][11] = [ six[1], six[2], six[3] ];
+
+        mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
 
         renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth, window.innerHeight );
 
         document.body.appendChild( renderer.domElement );
-
     }
 
     function animate() {
 
         requestAnimationFrame( animate );
 
-        mesh.rotation.x += 0.01;
-        mesh.rotation.y += 0.02;
+        // mesh.rotation.x += 0.01;
+        // mesh.rotation.y += 0.02;
 
         renderer.render( scene, camera );
 
